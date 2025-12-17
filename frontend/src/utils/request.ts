@@ -2,8 +2,8 @@
 import axios from "axios";
 import { generateRandomString } from "./index";
 
-// API基础URL
-const BASE_URL = import.meta.env.VITE_IS_DOCKER ? "" : "http://localhost:8080";
+// API基础URL - 使用相对路径，通过Vite代理访问
+const BASE_URL = import.meta.env.VITE_IS_DOCKER ? "" : "";
 
 
 // 创建Axios实例

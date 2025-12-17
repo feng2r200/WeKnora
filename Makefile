@@ -265,7 +265,7 @@ dev-status:
 	./scripts/dev.sh status
 
 dev-app:
-	./scripts/dev.sh app
+	@export CC=/usr/bin/clang && export CXX=/usr/bin/clang++ && ./scripts/dev.sh app
 
 dev-frontend:
 	./scripts/dev.sh frontend

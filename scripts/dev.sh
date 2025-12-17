@@ -231,14 +231,20 @@ show_status() {
 # 启动后端应用（本地）
 start_app() {
     log_info "启动后端应用（本地开发模式）..."
-    
+
     cd "$PROJECT_ROOT"
-    
+
     # 检查 Go 是否安装
     if ! command -v go &> /dev/null; then
         log_error "Go 未安装"
         return 1
     fi
+
+    # 设置 CGO 编译器（解决 arm64 链接问题）
+    # 使用系统默认的 clang 而不是 Homebrew 的版本
+    export CC=/usr/bin/clang
+    export CXX=/usr/bin/clang++
+    log_info "CGO 编译器已设置为: CC=$CC, CXX=$CXX"
     
     # 加载环境变量（使用 set -a 确保所有变量都被导出）
     if [ -f ".env" ]; then
